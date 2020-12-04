@@ -4,11 +4,11 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Biostat web page, ">
-        <meta name="keywords" content="">
+        <meta name="description" content="Pelicanでgit.ioにアップロードするやり方をメモ https://medium.com/@acalamea/step-by-step-guide-to-setup-a-web-site-using-pelican-and-gitpages-5de976ae44cb とりあえずGitのページからioが使える設定に変更 ページの雛形作成 pelican-quickstart...">
+        <meta name="keywords" content="pelican, python">
         <link rel="icon" href="./favicon.ico">
 
-        <title> - Biostat web page</title>
+        <title>Pelican 経由で記事の作成と公開 - Biostat web page</title>
 
         <!-- Stylesheets -->
         <link href="./theme/css/bootstrap.min.css" rel="stylesheet">
@@ -48,16 +48,23 @@
             <!-- /Static navbar -->
 
             <!-- Header -->
+    <!-- Header -->
     <div class="container header-wrapper">
         <div class="row">
               <div class="col-lg-12">
                   <div class="header-content">
-                      <h1 class="header-title"></h1>
+                      <h1 class="header-title">Pelican 経由で記事の作成と公開</h1>
+                      <p class="header-date"> <a href="./author/shttksm.html">shttksm</a>, Tue 04 December 2018,  <a href="./category/pelican.html">Pelican</a></p>
                       <div class="header-underline"></div>
+                      <div class="clearfix"></div>
+                      <p class="pull-right header-tags">
+                          <span class="glyphicon glyphicon-tags mr5" aria-hidden="true"></span>
+<a href="./tag/pelican.html">pelican</a>, <a href="./tag/python.html">python</a>                      </p>
                   </div>
               </div>
         </div>
     </div>
+    <!-- /Header -->
             <!-- /Header -->
 
         </div>
@@ -65,17 +72,51 @@
 
 
         <!-- Content -->
-    
-    <div class="archive-container">
-        <div class="container content archive">
-            <h2><a href="./index.html"> </a></h2>
-            <dl class="dl-horizontal">
-                <dt>Tue 04 December 2018</dt>
-                <dd><a href="./pelican-jing-you-deji-shi-nozuo-cheng-togong-kai.html">Pelican 経由で記事の作成と公開</a></dd>
-                <dt>Fri 17 August 2018</dt>
-                <dd><a href="./first-post.html">My first post powered by Pelican</a></dd>
-            </dl>
-        </div>
+    <div class="container content">
+        <h1>Pelicanでgit.ioにアップロードするやり方をメモ</h1>
+<p>https://medium.com/@acalamea/step-by-step-guide-to-setup-a-web-site-using-pelican-and-gitpages-5de976ae44cb</p>
+<ul>
+<li>とりあえずGitのページからioが使える設定に変更</li>
+</ul>
+<h2>ページの雛形作成</h2>
+<ul>
+<li><code>pelican-quickstart</code></li>
+</ul>
+<h2>記事を書く</h2>
+<ul>
+<li>content/ の配下に.mdファイルで記事ページを書く</li>
+<li><code>make html</code> でoutput/配下にmdから変換されたhtmlファイルが保存</li>
+<li>ローカルで表示確認 <code>make serve</code>, http://localhost:8000/ で確認</li>
+</ul>
+<h2>テーマ変更</h2>
+<ul>
+<li>
+<p>対象のgit ディレクトリにテーマのgitリポからgit clone してきてコピー </p>
+<ul>
+<li>http://pelicanthemes.com/</li>
+</ul>
+</li>
+<li>
+<p><code>THEME = './nest'</code> pelicanconf.py のテーマを取ってきたテーマ名とする．</p>
+<ul>
+<li>ブログ名など種々の設定もこのpyファイルをいじる．</li>
+</ul>
+</li>
+</ul>
+<h2>公開</h2>
+<p>https://docs.getpelican.com/en/stable/tips.html#publishing-to-github</p>
+<ul>
+<li><code>pelican content -o output -s pelicanconf.py</code></li>
+<li><code>ghp-import output -b gh-pages</code></li>
+<li><code>git push origin gh-pages</code></li>
+</ul>
+<p>The ghp-import output command updates the local gh-pages branch with the content of the output directory (creating the branch if it doesn’t already exist). The git push origin gh-pages command updates the remote gh-pages branch, effectively publishing the Pelican site.</p>
+<p>ghp-import はlocal master で編集していたとして，公開する際に別ブランチのgh-pagesのoutputディレクトリにhtmlファイルを作ってステージングとコミットする．そんで，pushするときにremoteのorigin にローカルのgh-pagesを上書きする．</p>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+
+        
     </div>
         <!-- /Content --> 
 
